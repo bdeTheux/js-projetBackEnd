@@ -12,9 +12,9 @@ router.get("/", authorize, function (req, res, next) {
 });
 
 /* POST user data for authentication */
-router.post("/login", function (req, res, next) {
+router.post("/loginRegister", function (req, res, next) {
   let user = new User(req.body.email, req.body.email, req.body.password);
-  console.log("POST users/login:", User.list);
+  console.log("POST users/loginRegister:", User.list);
   user.checkCredentials(req.body.email, req.body.password).then((match) => {
     if (match) {
       jwt.sign({ username: user.username }, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
@@ -26,7 +26,7 @@ router.post("/login", function (req, res, next) {
         return res.json({ username: user.username, token });
       });
     } else {
-      console.log("POST users/login Error:", "Unauthentified");
+      console.log("POST users/loginRegister Error:", "Unauthentified");
       return res.status(401).send("bad email/password");
     }
   })  
