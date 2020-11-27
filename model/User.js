@@ -1,4 +1,4 @@
-"strict mode";
+"use strict";
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const myPlaintextPassword = "145OkyayNo668Pass";
