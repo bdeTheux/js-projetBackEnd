@@ -17,7 +17,7 @@ class User {
     const hashedPassword = await bcrypt.hash(this.password, saltRounds);
     console.log("save:", this.email);
     userList.push({
-      username: this.email,
+      username: this.username,
       email: this.email,
       password: hashedPassword,
     });

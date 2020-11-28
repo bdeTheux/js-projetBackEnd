@@ -13,7 +13,7 @@ router.get("/", authorize, function (req, res, next) {
 
 /* POST user data for authentication */
 router.post("/login", function (req, res, next) {
-  let user = new User(req.body.email, req.body.email, req.body.password);
+  let user = new User(req.body.username, req.body.email, req.body.password);
   console.log("POST users/login:", User.list);
   user.checkCredentials(req.body.email, req.body.password).then((match) => {
     if (match) {
