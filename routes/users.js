@@ -26,7 +26,7 @@ router.post("/login", function (req, res, next) {
         return res.json({ username: user.username, token });
       });
     } else {
-      console.log("POST users/login Error:", "Unauthentified");
+      console.log("POST users/loginRegister Error:", "Unauthentified");
       return res.status(401).send("bad email/password");
     }
   })  
