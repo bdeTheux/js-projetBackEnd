@@ -1,5 +1,5 @@
 "use strict";
-const achievementList;
+let achievementList = [];
 const FILE_PATH = __dirname + "/achievements.json";
 
 class Achievement {
@@ -11,6 +11,15 @@ class Achievement {
         this.state = state;
     }
 
+    setAchievementState(state) {
+        this.state = state;
+        if(this.state == true) {
+            //change css selector to achieved
+        }
+        else{
+            //change css selector to not achieved
+        }
+    }
 }
 
 //Instanciation de tous les achievements
@@ -50,6 +59,7 @@ function saveAchievementListToFile(filePath,achievementList) {
     let data = JSON.stringify(achievementList); //listisanarrayofobjects
     fs.writeFileSync(filePath,data);
 }
+
 
 
 achievementsInstantiation(achievementList);
