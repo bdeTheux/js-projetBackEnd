@@ -31,6 +31,8 @@ class User {
     let userFound = User.getUserFromList(email);
     console.log("User::checkCredentials:", userFound, " password:", password);
     if (!userFound) return Promise.resolve(false);
+    //si il y a un match je renvoie l'utilisateur qui a été trouvé
+    this.username = userFound.username
     //try {
     console.log("checkCredentials:prior to await");
     // return the promise

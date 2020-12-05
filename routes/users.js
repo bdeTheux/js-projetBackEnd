@@ -23,6 +23,9 @@ router.post("/login", function (req, res, next) {
           return res.status(500).send(err.message);
         }
         console.log("POST users/ token:", token);
+        console.error("noooooon")
+        console.log(user)
+        console.log({ username: user.username, token })
         return res.json({ username: user.username, token });
       });
     } else {
