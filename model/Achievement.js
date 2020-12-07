@@ -3,6 +3,7 @@ let achievementList = [];
 const FILE_PATH = __dirname + "/achievements.json";
 
 class Achievement {
+
     
     constructor(title, description, type, state){
         this.title = title;
@@ -20,6 +21,87 @@ class Achievement {
             //change css selector to not achieved
         }
     }
+    static get achievements() {
+        console.log('Get the achievements');
+        return getAchievementListFromFile(FILE_PATH);
+    }
+
+    static get achievementsVictory() {
+        console.log('Get the victory achievements items');
+        const achievementsFull = getAchievementListFromFile(FILE_PATH);
+        let achievements = [];
+        for (let index = 0; index < achievementsFull.length; index++) {
+            if(achievementsFull[index].type === 1){
+                achievements.push({
+                    title: achievementsFull[index].title,
+                    description: achievementsFull[index].description,
+                    type: achievementsFull[index].type,
+                    state: achievementsFull[index].state,
+                });
+            }
+            
+        }
+        console.log('Returned the victory achievements');
+        return achievements;
+    }
+
+    static get achievementsDefeat() {
+        console.log('Get the defeats achievements items');
+        const achievementsFull = getAchievementListFromFile(FILE_PATH);
+        let achievements = [];
+        for (let index = 0; index < achievementsFull.length; index++) {
+            if(achievementsFull[index].type === 2){
+                achievements.push({
+                    title: achievementsFull[index].title,
+                    description: achievementsFull[index].description,
+                    type: achievementsFull[index].type,
+                    state: achievementsFull[index].state,
+                });
+            }
+            
+        }
+        console.log('Returned the defeats achievements');
+        return achievements;
+    }
+
+    static get achievementsGame() {
+        console.log('Get the games achievements items');
+        const achievementsFull = getAchievementListFromFile(FILE_PATH);
+        let achievements = [];
+        for (let index = 0; index < achievementsFull.length; index++) {
+            if(achievementsFull[index].type === 3){
+                achievements.push({
+                    title: achievementsFull[index].title,
+                    description: achievementsFull[index].description,
+                    type: achievementsFull[index].type,
+                    state: achievementsFull[index].state,
+                });
+            }
+            
+        }
+        console.log('Returned the games achievements');
+        return achievements;
+    }
+
+    static get achievementsTime() {
+        console.log('Get the times achievements items');
+        const achievementsFull = getAchievementListFromFile(FILE_PATH);
+        let achievements = [];
+        for (let index = 0; index < achievementsFull.length; index++) {
+            if(achievementsFull[index].type === 4){
+                achievements.push({
+                    title: achievementsFull[index].title,
+                    description: achievementsFull[index].description,
+                    type: achievementsFull[index].type,
+                    state: achievementsFull[index].state,
+                });
+            }
+            
+        }
+        console.log('Returned the times achievements');
+        return achievements;
+    }
+
 }
 
 //Instanciation de tous les achievements
@@ -54,7 +136,23 @@ function achievementsInstantiation(list) {
     
 }
 
+
+
+
+function getAchievementListFromFile(filePath) {
+    console.log('Get the achievement list from ' + filePath);
+    const fs = require("fs");
+    if (!fs.existsSync(filePath)) return [];
+    let achListRawData = fs.readFileSync(filePath);
+    let achList;
+    if (achListRawData) achList = JSON.parse(achListRawData);
+    else achList = [];
+    return achList;
+}
+
+
 function saveAchievementListToFile(filePath,achievementList) {
+    console.log('Save the achievemnt list {' + achievementList + '} to ' + filePath)
     const fs = require("fs");
     let data = JSON.stringify(achievementList); //listisanarrayofobjects
     fs.writeFileSync(filePath,data);
@@ -64,3 +162,5 @@ function saveAchievementListToFile(filePath,achievementList) {
 
 achievementsInstantiation(achievementList);
 saveAchievementListToFile(FILE_PATH, achievementList);
+
+module.exports = Achievement;

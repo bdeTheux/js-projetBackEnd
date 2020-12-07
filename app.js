@@ -6,6 +6,8 @@ var logger = require("morgan");
 
 var usersRouter = require("./routes/users");
 
+var achievementsRouter = require("./routes/achievements");
+
 var app = express();
 
 app.use(logger("dev"));
@@ -13,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/users", usersRouter);
+
+app.use("/api/achievements", achievementsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
