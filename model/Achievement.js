@@ -3,7 +3,6 @@ let achievementList = [];
 const FILE_PATH = __dirname + "/achievements.json";
 
 class Achievement {
-
     
     constructor(title, description, type, state){
         this.title = title;
@@ -14,12 +13,6 @@ class Achievement {
 
     setAchievementState(state) {
         this.state = state;
-        if(this.state == true) {
-            //change css selector to achieved
-        }
-        else{
-            //change css selector to not achieved
-        }
     }
     static get achievements() {
         console.log('Get the achievements');
@@ -137,11 +130,11 @@ function achievementsInstantiation(list) {
 }
 
 
-
+const fs = require("fs-extra");
 
 function getAchievementListFromFile(filePath) {
     console.log('Get the achievement list from ' + filePath);
-    const fs = require("fs");
+    
     if (!fs.existsSync(filePath)) return [];
     let achListRawData = fs.readFileSync(filePath);
     let achList;
@@ -153,7 +146,7 @@ function getAchievementListFromFile(filePath) {
 
 function saveAchievementListToFile(filePath,achievementList) {
     console.log('Save the achievemnt list {' + achievementList + '} to ' + filePath)
-    const fs = require("fs");
+    
     let data = JSON.stringify(achievementList); //listisanarrayofobjects
     fs.writeFileSync(filePath,data);
 }
