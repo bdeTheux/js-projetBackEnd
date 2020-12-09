@@ -44,14 +44,15 @@ class User {
       .catch((err) => err);
   }
 
-  static set setVictories(newVictories){
+  setVictories(newVictories){
     this.victories += newVictories;
   }
   static set setDefeats(newDefeats){
     this.victories += newDefeats;
   }
 
-  static get getVictories(){
+  getVictories(){
+    console.log("ici");
     return this.victories;
   }
 

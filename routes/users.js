@@ -66,7 +66,10 @@ router.get("/:username", function (req, res, next) {
     return res.status(404).send("ressource not found");
   }
 });
-
+router.get("/getVictories", function (req, res, next) {
+  console.log("la");
+  return res.send("toto");
+});
 router.post("/setVictories", function (req, res, next) {
   return res.json(User.setVictories);
 });
@@ -74,9 +77,7 @@ router.post("/setDefeats", function (req, res, next) {
   return res.json(User.setDefeats);
 });
 
-router.get("/getVictories", function (req, res, next) {
-  return res.json(User.getVictories);
-});
+
 
 router.get("/getDefeats", function (req, res, next) {
   return res.json(User.getDefeats);
