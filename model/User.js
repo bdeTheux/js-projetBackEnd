@@ -9,6 +9,7 @@ class User {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.victories = 0;
   }
 
   /* return a promise with async / await */ 
@@ -40,6 +41,12 @@ class User {
       .compare(password, userFound.password)
       .then((match) => match)
       .catch((err) => err);
+  }
+  static incrementVictories(){
+    this.victories += 1;
+  }
+  static get victories(){
+    return this.victories;
   }
 
   // Some example of bcrypt used with sync function
