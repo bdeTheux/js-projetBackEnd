@@ -108,16 +108,16 @@ function achievementsInstantiation(list) {
     const vic5 = new Achievement("SIR ROOSTER",     "Kill your opponent 40 times",                   1,         false);
     const vic6 = new Achievement("TERMINACAT",      "Kill your opponent 50 times",                   1,         false);
 
-    const def1 = new Achievement("LITTLE RUNNER",          "Get killed by your opponent 10 times",          2,         false);
-    const def2 = new Achievement("NOT BAD, JK",          "Get killed by your opponent 25 times",          2,         false);
-    const def3 = new Achievement("CAT ASTROPHIC",          "Get killed by your opponent 50 times",          2,         false);
+    const def1 = new Achievement("LITTLE RUNNER",   "Get killed by your opponent 10 times",          2,         false);
+    const def2 = new Achievement("NOT BAD, JK",     "Get killed by your opponent 25 times",          2,         false);
+    const def3 = new Achievement("CAT ASTROPHIC",   "Get killed by your opponent 50 times",          2,         false);
 
-    const gam1 = new Achievement("CHICK",        "Finish your first game",                        3,         false);
-    const gam2 = new Achievement("DUCK",          "Finish 5 games",                                3,         false);
-    const gam3 = new Achievement("GOOSE",          "Finish 10 games",                               3,         false);
+    const gam1 = new Achievement("CHICK",           "Finish your first game",                        3,         false);
+    const gam2 = new Achievement("DUCK",            "Finish 5 games",                                3,         false);
+    const gam3 = new Achievement("GOOSE",           "Finish 10 games",                               3,         false);
     const gam4 = new Achievement("TURKEY",          "Finish 20 games",                               3,         false);
-    const gam5 = new Achievement("PHEASANT",          "Finish 25 games",                               3,         false);
-    const gam6 = new Achievement("SWAN",          "Finish 50 games",                               3,         false);
+    const gam5 = new Achievement("PHEASANT",        "Finish 25 games",                               3,         false);
+    const gam6 = new Achievement("SWAN",            "Finish 50 games",                               3,         false);
 
     const tim1 = new Achievement("noname",          "Play a total of 30min of game",                 4,         false);
     const tim2 = new Achievement("noname",          "Play a total of 1 hour of game",                4,         false);
