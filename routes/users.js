@@ -68,10 +68,22 @@ router.get("/:username", function (req, res, next) {
 });
 
 router.post("/setVictories", function (req, res, next) {
-  return res.json(User.incrementVictories);
+  return res.json(User.setVictories);
 });
+router.post("/setDefeats", function (req, res, next) {
+  return res.json(User.setDefeats);
+});
+
 router.get("/getVictories", function (req, res, next) {
-  return res.json(User.victories);
+  return res.json(User.getVictories);
+});
+
+router.get("/getDefeats", function (req, res, next) {
+  return res.json(User.getDefeats);
+});
+
+router.get("/getGameScore", function (req, res, next) {
+  return res.json(User.getGameScore);
 });
 
 

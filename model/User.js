@@ -43,11 +43,24 @@ class User {
       .then((match) => match)
       .catch((err) => err);
   }
-  static incrementVictories(){
-    this.victories += 1;
+
+  static set setVictories(newVictories){
+    this.victories += newVictories;
   }
-  static get victories(){
+  static set setDefeats(newDefeats){
+    this.victories += newDefeats;
+  }
+
+  static get getVictories(){
     return this.victories;
+  }
+
+  static get getDefeats(){
+    return this.defeats;
+  }
+  
+  static get getGameScore(){
+    return (this.victories+this.defeats);
   }
 
   // Some example of bcrypt used with sync function

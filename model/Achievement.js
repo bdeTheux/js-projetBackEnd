@@ -76,6 +76,7 @@ class Achievement {
         return achievements;
     }
 
+    /*
     static get achievementsTime() {
         console.log('Get the times achievements items');
         const achievementsFull = getAchievementListFromFile(FILE_PATH);
@@ -94,6 +95,7 @@ class Achievement {
         console.log('Returned the times achievements');
         return achievements;
     }
+    */
 
 }
 
@@ -119,13 +121,15 @@ function achievementsInstantiation(list) {
     const gam5 = new Achievement("PHEASANT",        "Finish 25 games",                               3,         false);
     const gam6 = new Achievement("SWAN",            "Finish 50 games",                               3,         false);
 
+    /*
     const tim1 = new Achievement("noname",          "Play a total of 30min of game",                 4,         false);
     const tim2 = new Achievement("noname",          "Play a total of 1 hour of game",                4,         false);
     const tim3 = new Achievement("noname",          "Play a total of 2 hour of game",                4,         false);
     const tim4 = new Achievement("noname",          "Play a total of 3 hour of game",                4,         false);
+    */
 
 
-    list.push(vic1, vic2, vic3, vic4, vic5, vic6, def1, def2, def3, gam1, gam2, gam3, gam4, gam5, gam6, tim1, tim2, tim3, tim4);
+    list.push(vic1, vic2, vic3, vic4, vic5, vic6, def1, def2, def3, gam1, gam2, gam3, gam4, gam5, gam6);
     
 }
 
