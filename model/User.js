@@ -10,6 +10,7 @@ class User {
     this.email = email;
     this.password = password;
     this.victories = 0;
+    this.defeats = 0;
   }
 
   /* return a promise with async / await */ 
