@@ -56,6 +56,26 @@ router.post("/", function (req, res, next) {
   });
 });
 
+
+router.get("/getVictories", function (req, res, next) {
+  return res.json(User.getVictories);
+});
+router.post("/setVictories", function (req, res, next) {
+  return res.json(User.setVictories);
+});
+router.post("/setdefeats", function (req, res, next) {
+  return res.json(User.setDefeats);
+});
+
+
+router.get("/getdefeats", function (req, res, next) {
+  return res.json(User.getDefeats);
+});
+
+router.get("/getgamescore", function (req, res, next) {
+  return res.json(User.getGameScore);
+});
+
 /* GET user object from username */
 router.get("/:username", function (req, res, next) {
   console.log("GET users/:username", req.params.username);
@@ -65,26 +85,6 @@ router.get("/:username", function (req, res, next) {
   } else {
     return res.status(404).send("ressource not found");
   }
-});
-
-router.post("/setvictories", function (req, res, next) {
-  return res.json(User.setVictories);
-});
-router.post("/setdefeats", function (req, res, next) {
-  return res.json(User.setDefeats);
-});
-
-router.get("/getvictories", function (req, res, next) {
-  console.log(User.getVictories);
-  return res.json(User.getVictories);
-});
-
-router.get("/getdefeats", function (req, res, next) {
-  return res.json(User.getDefeats);
-});
-
-router.get("/getgamescore", function (req, res, next) {
-  return res.json(User.getGameScore);
 });
 
 
