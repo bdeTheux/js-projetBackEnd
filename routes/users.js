@@ -56,19 +56,9 @@ router.post("/", function (req, res, next) {
   });
 });
 
-/* GET user object from username */
-router.get("/:username", function (req, res, next) {
-  console.log("GET users/:username", req.params.username);
-  const userFound = User.getUserFromList(req.params.username);
-  if (userFound) {
-    return res.json(userFound);
-  } else {
-    return res.status(404).send("ressource not found");
-  }
-});
+
 router.get("/getVictories", function (req, res, next) {
-  console.log("la");
-  return res.send("toto");
+  return res.json(User.getVictories);
 });
 router.post("/setVictories", function (req, res, next) {
   return res.json(User.setVictories);
@@ -85,6 +75,17 @@ router.get("/getDefeats", function (req, res, next) {
 
 router.get("/getGameScore", function (req, res, next) {
   return res.json(User.getGameScore);
+});
+
+/* GET user object from username */
+router.get("/:username", function (req, res, next) {
+  console.log("GET users/:username", req.params.username);
+  const userFound = User.getUserFromList(req.params.username);
+  if (userFound) {
+    return res.json(userFound);
+  } else {
+    return res.status(404).send("ressource not found");
+  }
 });
 
 
