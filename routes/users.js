@@ -17,7 +17,7 @@ router.post("/login", function (req, res, next) {
   console.log("POST users/login:", User.list);
   user.checkCredentials(req.body.email, req.body.password).then((match) => {
     if (match) {
-      jwt.sign({ username: user.username }, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
+      jwt.sign({ username: user.username, email: user.email }, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
         if (err) {
           console.error("POST users/ :", err);
           return res.status(500).send(err.message);
@@ -45,7 +45,7 @@ router.post("/", function (req, res, next) {
   let newUser = new User(req.body.username, req.body.email, req.body.password);
   newUser.save().then(() => {
     console.log("afterRegisterOp:", User.list);
-    jwt.sign({ username: newUser.username}, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
+    jwt.sign({ username: newUser.username, email:newUser.email}, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
       if (err) {
         console.error("POST users/ :", err);
         return res.status(500).send(err.message);
@@ -57,23 +57,32 @@ router.post("/", function (req, res, next) {
 });
 
 
-router.get("/getVictories", function (req, res, next) {
-  return res.json(User.getVictories);
-});
-router.post("/setVictories", function (req, res, next) {
-  return res.json(User.setVictories);
-});
-router.post("/setdefeats", function (req, res, next) {
-  return res.json(User.setDefeats);
+router.get("/getVictories", authorize, function (req, res, next) {
+  console.log(req.user.username);
+  res.json({
+    score : User.getVictories(req.user.username)});
 });
 
+router.get("/setVictories", authorize, function (req, res, next) {
+  console.log("Ici aussi (users)")
+  res.json({
+    score : User.setVictories(req.user.username)});
+});
+router.get("/setDefeats", authorize, function (req, res, next) {
+  res.json({
+    score : User.setDefeats(req.user.username)});});
 
-router.get("/getdefeats", function (req, res, next) {
-  return res.json(User.getDefeats);
+
+router.get("/getDefeats", authorize, function (req, res, next) {
+  console.log(req.user.username);
+  res.json({
+    score : User.getDefeats(req.user.username)});
 });
 
-router.get("/getgamescore", function (req, res, next) {
-  return res.json(User.getGameScore);
+router.get("/getGameScore", authorize, function (req, res, next) {
+  console.log(req.user.username);
+  res.json({
+    score : User.getGameScore(req.user.username)});
 });
 
 /* GET user object from username */

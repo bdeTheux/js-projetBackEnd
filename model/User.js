@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const myPlaintextPassword = "145OkyayNo668Pass";
 const FILE_PATH = __dirname + "/users.json";
+const fs = require("fs-extra");
 
 class User {
   constructor(username, email, password) {
@@ -22,6 +23,8 @@ class User {
       username: this.username,
       email: this.email,
       password: hashedPassword,
+      victories: this.victories, 
+      defeats : this.defeats
     });
     saveUserListToFile(FILE_PATH, userList);
     return true;
@@ -44,25 +47,92 @@ class User {
       .catch((err) => err);
   }
 
-  setVictories(newVictories){
-    this.victories += newVictories;
-  }
-  static setDefeats(newDefeats){
-    this.victories += newDefeats;
+  static setVictories(username){
+    // charger la liste d'utilisateurs
+    let userList = getUserListFromFile(FILE_PATH);
+    // trouver user associé à username et charger le user
+    let userFound;
+    for (let index = 0; index < userList.length; index++) {
+      if (userList[index].username === username) {
+        userFound = userList[index];
+        break;
+      }
+    }
+    // changer une props de user (chargé)
+    userFound.victories += 1;
+    // sauver tous les users à nouveau dans users.json
+    let data = JSON.stringify(userList); 
+    fs.writeFileSync(FILE_PATH,data);
   }
 
-  getVictories(){
-    console.log("ici");
-    return this.victories;
+  static setDefeats(username){
+    // charger la liste d'utilisateurs
+    let userList = getUserListFromFile(FILE_PATH);
+    // trouver user associé à username et charger le user
+    let userFound;
+    for (let index = 0; index < userList.length; index++) {
+      if (userList[index].username === username) {
+        userFound = userList[index];
+        console.log(userFound);
+        break;
+      }
+    }
+    console.log("Je suis passé")
+    // changer une props de user (chargé)
+    userFound.defeats += 1;
+
+    // sauver tous les users à nouveau dans users.json
+    let data = JSON.stringify(userList); //listisanarrayofobjects
+    fs.writeFileSync(FILE_PATH,data);
   }
 
-  static getDefeats(){
-    return this.defeats;
+  static getVictories(username){
+    // charger la liste d'utilisateurs
+    let userList = getUserListFromFile(FILE_PATH);
+    // trouver user associé à username et charger le user
+    let userFound;
+    for (let index = 0; index < userList.length; index++) {
+      if (userList[index].username === username) {
+        userFound = userList[index];
+        console.log(userFound);
+        break;
+      }
+    }
+    console.log("getVictories : ", userFound.victories);
+    return userFound.victories;
+  }
+
+  static getDefeats(username){
+    // charger la liste d'utilisateurs
+    let userList = getUserListFromFile(FILE_PATH);
+    // trouver user associé à username et charger le user
+    let userFound;
+    for (let index = 0; index < userList.length; index++) {
+      if (userList[index].username === username) {
+        userFound = userList[index];
+        console.log(userFound);
+        break;
+      }
+    }
+    console.log("getDefeats : ", userFound.defeats);
+    return userFound.defeats;
   }
   
-  static getGameScore(){
-    return (this.victories+this.defeats);
+  static getGameScore(username){
+    // charger la liste d'utilisateurs
+    let userList = getUserListFromFile(FILE_PATH);
+    // trouver user associé à username et charger le user
+    let userFound;
+    for (let index = 0; index < userList.length; index++) {
+      if (userList[index].username === username) {
+        userFound = userList[index];
+        console.log(userFound);
+        break;
+      }
+    }
+    return userFound.defeats + userFound.victories;
   }
+
 
   // Some example of bcrypt used with sync function
   /*
