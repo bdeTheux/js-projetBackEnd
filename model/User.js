@@ -134,29 +134,7 @@ class User {
   }
 
 
-  // Some example of bcrypt used with sync function
-  /*
-  save() {
-    let userList = getUserListFromFile(FILE_PATH);
-    const hashedPassword = bcrypt.hashSync(this.password, saltRounds);
-
-    userList.push({
-      username: this.email,
-      email: this.email,
-      password: hashedPassword,
-    });
-
-    saveUserListToFile(FILE_PATH, userList);
-  }
-
-  checkCredentials(email, password) {
-    if (!email || !password) return false;
-    let userFound = User.getUserFromList(email);
-    console.log("User::checkCredentials:", userFound, " password:", password);
-    if (!userFound) return false;
-    const match = bcrypt.compareSync(password, userFound.password);
-    return match;
-  }*/
+  
 
   static get list() {
     let userList = getUserListFromFile(FILE_PATH);

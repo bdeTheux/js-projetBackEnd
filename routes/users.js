@@ -64,7 +64,6 @@ router.get("/getVictories", authorize, function (req, res, next) {
 });
 
 router.get("/setVictories", authorize, function (req, res, next) {
-  console.log("Ici aussi (users)")
   res.json({
     score : User.setVictories(req.user.username)});
 });
