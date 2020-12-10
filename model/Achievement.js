@@ -3,10 +3,11 @@ let achievementList = [];
 const FILE_PATH = __dirname + "/achievements.json";
 
 class Achievement {
-    
-    constructor(title, description, type, state){
+    //condition represente le nombre de victoire/defaite/parties à atteindre avant de gagner l'achievement
+    constructor(title, description, condition, type, state){
         this.title = title;
         this.description = description;
+        this.condition = condition;
         this.type = type;
         this.state = state;
     }
@@ -28,6 +29,7 @@ class Achievement {
                 achievements.push({
                     title: achievementsFull[index].title,
                     description: achievementsFull[index].description,
+                    condition: achievementsFull[index].condition,
                     type: achievementsFull[index].type,
                     state: achievementsFull[index].state,
                 });
@@ -47,6 +49,7 @@ class Achievement {
                 achievements.push({
                     title: achievementsFull[index].title,
                     description: achievementsFull[index].description,
+                    condition: achievementsFull[index].condition,
                     type: achievementsFull[index].type,
                     state: achievementsFull[index].state,
                 });
@@ -66,6 +69,7 @@ class Achievement {
                 achievements.push({
                     title: achievementsFull[index].title,
                     description: achievementsFull[index].description,
+                    condition: achievementsFull[index].condition,
                     type: achievementsFull[index].type,
                     state: achievementsFull[index].state,
                 });
@@ -86,6 +90,7 @@ class Achievement {
                 achievements.push({
                     title: achievementsFull[index].title,
                     description: achievementsFull[index].description,
+                    condition: achievementsFull[index].condition,
                     type: achievementsFull[index].type,
                     state: achievementsFull[index].state,
                 });
@@ -102,24 +107,26 @@ class Achievement {
 //Instanciation de tous les achievements
 //pour les types: 1 = victory, 2 = defeat, 3= Amount of games played, 4 = Amount of hours played
 function achievementsInstantiation(list) {
+    
+//                                 TITLE            DESCRIPTION                                          CONDITION      TYPE       STATE
 
-    const vic1 = new Achievement("OMELETTE",        "Kill your opponent for the first time",         1,         false);
-    const vic2 = new Achievement("SIR CHICKY",      "Kill your opponent 10 times",                   1,         false);
-    const vic3 = new Achievement("PRO EGGBREAKER",  "Kill your opponent 20 times",                   1,         false);
-    const vic4 = new Achievement("JACK THE MEOWER", "Kill your opponent 30 times",                   1,         false);
-    const vic5 = new Achievement("SIR ROOSTER",     "Kill your opponent 40 times",                   1,         false);
-    const vic6 = new Achievement("TERMINACAT",      "Kill your opponent 50 times",                   1,         false);
+    const vic1 = new Achievement("OMELETTE",        "Kill your opponent for the first time",             1,             1,         false);
+    const vic2 = new Achievement("SIR CHICKY",      "Kill your opponent 10 times",                       10,            1,         false);
+    const vic3 = new Achievement("PRO EGGBREAKER",  "Kill your opponent 20 times",                       20,            1,         false);
+    const vic4 = new Achievement("JACK THE MEOWER", "Kill your opponent 30 times",                       30,            1,         false);
+    const vic5 = new Achievement("SIR ROOSTER",     "Kill your opponent 40 times",                       40,            1,         false);
+    const vic6 = new Achievement("TERMINACAT",      "Kill your opponent 50 times",                       50,            1,         false);
 
-    const def1 = new Achievement("LITTLE RUNNER",   "Get killed by your opponent 10 times",          2,         false);
-    const def2 = new Achievement("NOT BAD, JK",     "Get killed by your opponent 25 times",          2,         false);
-    const def3 = new Achievement("CAT ASTROPHIC",   "Get killed by your opponent 50 times",          2,         false);
+    const def1 = new Achievement("LITTLE RUNNER",   "Get killed by your opponent 10 times",              10,            2,         false);
+    const def2 = new Achievement("NOT BAD, JK",     "Get killed by your opponent 25 times",              25,            2,         false);
+    const def3 = new Achievement("CAT ASTROPHIC",   "Get killed by your opponent 50 times",              50,            2,         false);
 
-    const gam1 = new Achievement("CHICK",           "Finish your first game",                        3,         false);
-    const gam2 = new Achievement("DUCK",            "Finish 5 games",                                3,         false);
-    const gam3 = new Achievement("GOOSE",           "Finish 10 games",                               3,         false);
-    const gam4 = new Achievement("TURKEY",          "Finish 20 games",                               3,         false);
-    const gam5 = new Achievement("PHEASANT",        "Finish 25 games",                               3,         false);
-    const gam6 = new Achievement("SWAN",            "Finish 50 games",                               3,         false);
+    const gam1 = new Achievement("CHICK",           "Finish your first game",                            1,             3,         false);
+    const gam2 = new Achievement("DUCK",            "Finish 5 games",                                    5,             3,         false);
+    const gam3 = new Achievement("GOOSE",           "Finish 10 games",                                   10,            3,         false);
+    const gam4 = new Achievement("TURKEY",          "Finish 20 games",                                   20,            3,         false);
+    const gam5 = new Achievement("PHEASANT",        "Finish 25 games",                                   25,            3,         false);
+    const gam6 = new Achievement("SWAN",            "Finish 50 games",                                   50,            3,         false);
 
     /*
     const tim1 = new Achievement("noname",          "Play a total of 30min of game",                 4,         false);

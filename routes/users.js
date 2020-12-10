@@ -67,22 +67,23 @@ router.get("/:username", function (req, res, next) {
   }
 });
 
-router.post("/setVictories", function (req, res, next) {
+router.post("/setvictories", function (req, res, next) {
   return res.json(User.setVictories);
 });
-router.post("/setDefeats", function (req, res, next) {
+router.post("/setdefeats", function (req, res, next) {
   return res.json(User.setDefeats);
 });
 
-router.get("/getVictories", function (req, res, next) {
+router.get("/getvictories", function (req, res, next) {
+  console.log(User.getVictories);
   return res.json(User.getVictories);
 });
 
-router.get("/getDefeats", function (req, res, next) {
+router.get("/getdefeats", function (req, res, next) {
   return res.json(User.getDefeats);
 });
 
-router.get("/getGameScore", function (req, res, next) {
+router.get("/getgamescore", function (req, res, next) {
   return res.json(User.getGameScore);
 });
 
