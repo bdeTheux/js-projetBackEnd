@@ -79,29 +79,6 @@ class Achievement {
         console.log('Returned the games achievements');
         return achievements;
     }
-
-    /*
-    static get achievementsTime() {
-        console.log('Get the times achievements items');
-        const achievementsFull = getAchievementListFromFile(FILE_PATH);
-        let achievements = [];
-        for (let index = 0; index < achievementsFull.length; index++) {
-            if(achievementsFull[index].type === 4){
-                achievements.push({
-                    title: achievementsFull[index].title,
-                    description: achievementsFull[index].description,
-                    condition: achievementsFull[index].condition,
-                    type: achievementsFull[index].type,
-                    state: achievementsFull[index].state,
-                });
-            }
-            
-        }
-        console.log('Returned the times achievements');
-        return achievements;
-    }
-    */
-
 }
 
 //Instanciation de tous les achievements
@@ -135,9 +112,7 @@ function achievementsInstantiation(list) {
     const tim4 = new Achievement("noname",          "Play a total of 3 hour of game",                4,         false);
     */
 
-
-    list.push(vic1, vic2, vic3, vic4, vic5, vic6, def1, def2, def3, gam1, gam2, gam3, gam4, gam5, gam6);
-    
+    list.push(vic1, vic2, vic3, vic4, vic5, vic6, def1, def2, def3, gam1, gam2, gam3, gam4, gam5, gam6); 
 }
 
 
@@ -154,15 +129,12 @@ function getAchievementListFromFile(filePath) {
     return achList;
 }
 
-
 function saveAchievementListToFile(filePath,achievementList) {
     console.log('Save the achievemnt list {' + achievementList + '} to ' + filePath)
     
     let data = JSON.stringify(achievementList); //listisanarrayofobjects
     fs.writeFileSync(filePath,data);
 }
-
-
 
 achievementsInstantiation(achievementList);
 saveAchievementListToFile(FILE_PATH, achievementList);

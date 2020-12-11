@@ -56,33 +56,37 @@ router.post("/", function (req, res, next) {
 });
 
 //création des routes utilisé dans gameScene
+//appelle la méthode qui va chercher le nombre de victoires
 router.get("/getVictories", authorize, function (req, res, next) {
   res.json({
     score : User.getVictories(req.user.username)});
 });
 
+//appelle la méthode qui incrémente le nombre de victoires
 router.get("/setVictories", authorize, function (req, res, next) {
   res.json({
     score : User.setVictories(req.user.username)});
 });
+
+//appelle la méthode qui incrémente le nombre de défaites
 router.get("/setDefeats", authorize, function (req, res, next) {
   res.json({
     score : User.setDefeats(req.user.username)});});
 
-
+//appelle la méthode qui va chercher le nombre de victoires
 router.get("/getDefeats", authorize, function (req, res, next) {
   console.log(req.user.username);
   res.json({
     score : User.getDefeats(req.user.username)});
 });
 
-router.get("/getGameScore", authorize, function (req, res, next) {
+/*router.get("/getGameScore", authorize, function (req, res, next) {
   console.log(req.user.username);
   res.json({
     score : User.getGameScore(req.user.username)});
-});
+});*/
 
-/* GET user object from username */
+//va chercher le username de l'utilisateur connecté
 router.get("/:username", function (req, res, next) {
   const userFound = User.getUserFromList(req.params.username);
   if (userFound) {

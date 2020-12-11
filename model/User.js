@@ -14,7 +14,7 @@ class User {
     this.defeats = 0;
   }
 
-  /* return a promise with async / await */ 
+  //sauve l'utilisateur dans la liste des utilisateurs
   async save() {
     let userList = getUserListFromFile(FILE_PATH);
     const hashedPassword = await bcrypt.hash(this.password, saltRounds);
@@ -30,23 +30,21 @@ class User {
     return true;
   }
 
-  /* return a promise with classic promise syntax*/
+  // retourne une promesse avec une syntaxe de promesse classique
   checkCredentials(email, password) {
     if (!email || !password) return false;
     let userFound = User.getUserFromList(email);
-    console.log("User::checkCredentials:", userFound, " password:", password);
     if (!userFound) return Promise.resolve(false);
     //si il y a un match je renvoie l'utilisateur qui a été trouvé
-    this.username = userFound.username
-    //try {
-    console.log("checkCredentials:prior to await");
-    // return the promise
+    this.username = userFound.username;
+    // retourne la promesse
     return bcrypt
       .compare(password, userFound.password)
       .then((match) => match)
       .catch((err) => err);
   }
 
+  //incrémente le nombre de victoires du joueur connecté 
   static setVictories(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
@@ -65,6 +63,7 @@ class User {
     fs.writeFileSync(FILE_PATH,data);
   }
 
+   //incrémente le nombre de défaites du joueur connecté 
   static setDefeats(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
@@ -79,12 +78,12 @@ class User {
     }
     // changer une props de user (chargé)
     userFound.defeats += 1;
-
     // sauver tous les users à nouveau dans users.json
     let data = JSON.stringify(userList); //listisanarrayofobjects
     fs.writeFileSync(FILE_PATH,data);
   }
 
+  //va chercher le nombre de victoires du joueur connecté
   static getVictories(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
@@ -99,6 +98,7 @@ class User {
     return userFound.victories;
   }
 
+  //va chercher le nombre de défaites du joueur connecté
   static getDefeats(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
@@ -113,7 +113,7 @@ class User {
     return userFound.defeats;
   }
   
-  static getGameScore(username){
+  /*static getGameScore(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
     // trouver user associé à username et charger le user
@@ -125,22 +125,21 @@ class User {
       }
     }
     return userFound.defeats + userFound.victories;
-  }
+  }*/
 
-
-  
-
-  static get list() {
+  /*static get list() {
     let userList = getUserListFromFile(FILE_PATH);
     return userList;
-  }
+  }*/
 
+  //informe si l'user est présent dans la liste des utilisateurs
   static isUser(email) {
     const userFound = User.getUserFromList(email);
     console.log("User::isUser:", userFound);
     return userFound !== undefined;
   }
 
+  //renvoie l'utilisateur connecté contenu dans la liste en fonction de son email
   static getUserFromList(email) {
     const userList = getUserListFromFile(FILE_PATH);
     for (let index = 0; index < userList.length; index++) {
@@ -160,6 +159,7 @@ function getUserListFromFile(filePath) {
   return userList;
 }
 
+//sauve l'user dans la liste des utilisateurs
 function saveUserListToFile(filePath, userList) {
   const fs = require("fs");
   let data = JSON.stringify(userList);
