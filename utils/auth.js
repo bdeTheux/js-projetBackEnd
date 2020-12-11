@@ -10,12 +10,10 @@ const jwtSecret = "jkjJ1235Ohno!";
 const authorize = (req, res, next) => {
   console.log("authorize() middleware");
   var token = req.get("Authorization");
-  console.log(token);
   if (!token) return res.status(401).send("You are not authenticated.");
   jwt.verify(token, jwtSecret, (err, token) => {
     console.log("jwt verify");
     if (err) return res.status(401).send(err.message);
-    console.log(token.email);
     let user = User.getUserFromList(token.email);
     req.user = {};
     req.user.username = token.username;

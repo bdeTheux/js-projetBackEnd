@@ -77,7 +77,6 @@ class User {
         break;
       }
     }
-    console.log("Je suis passé")
     // changer une props de user (chargé)
     userFound.defeats += 1;
 
@@ -94,11 +93,9 @@ class User {
     for (let index = 0; index < userList.length; index++) {
       if (userList[index].username === username) {
         userFound = userList[index];
-        console.log(userFound);
         break;
       }
     }
-    console.log("getVictories : ", userFound.victories);
     return userFound.victories;
   }
 
@@ -110,11 +107,9 @@ class User {
     for (let index = 0; index < userList.length; index++) {
       if (userList[index].username === username) {
         userFound = userList[index];
-        console.log(userFound);
         break;
       }
     }
-    console.log("getDefeats : ", userFound.defeats);
     return userFound.defeats;
   }
   
@@ -126,7 +121,6 @@ class User {
     for (let index = 0; index < userList.length; index++) {
       if (userList[index].username === username) {
         userFound = userList[index];
-        console.log(userFound);
         break;
       }
     }

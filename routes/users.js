@@ -23,9 +23,7 @@ router.post("/login", function (req, res, next) {
           return res.status(500).send(err.message);
         }
         console.log("POST users/ token:", token);
-        console.error("noooooon")
-        console.log(user)
-        console.log({ username: user.username, token })
+        //on recupère le username pour pouvoir l'afficher dans le profile
         return res.json({ username: user.username, token });
       });
     } else {
@@ -45,6 +43,7 @@ router.post("/", function (req, res, next) {
   let newUser = new User(req.body.username, req.body.email, req.body.password);
   newUser.save().then(() => {
     console.log("afterRegisterOp:", User.list);
+    //on garde le username et l'email quand l'utilisateur se connecte
     jwt.sign({ username: newUser.username, email:newUser.email}, jwtSecret,{ expiresIn: LIFETIME_JWT }, (err, token) => {
       if (err) {
         console.error("POST users/ :", err);
@@ -56,9 +55,8 @@ router.post("/", function (req, res, next) {
   });
 });
 
-
+//création des routes utilisé dans gameScene
 router.get("/getVictories", authorize, function (req, res, next) {
-  console.log(req.user.username);
   res.json({
     score : User.getVictories(req.user.username)});
 });
@@ -86,7 +84,6 @@ router.get("/getGameScore", authorize, function (req, res, next) {
 
 /* GET user object from username */
 router.get("/:username", function (req, res, next) {
-  console.log("GET users/:username", req.params.username);
   const userFound = User.getUserFromList(req.params.username);
   if (userFound) {
     return res.json(userFound);
@@ -94,8 +91,5 @@ router.get("/:username", function (req, res, next) {
     return res.status(404).send("ressource not found");
   }
 });
-
-
-
 
 module.exports = router;
