@@ -113,7 +113,7 @@ class User {
     return userFound.defeats;
   }
   
-  /*static getGameScore(username){
+  static getGameScore(username){
     // charger la liste d'utilisateurs
     let userList = getUserListFromFile(FILE_PATH);
     // trouver user associé à username et charger le user
@@ -125,7 +125,7 @@ class User {
       }
     }
     return userFound.defeats + userFound.victories;
-  }*/
+  }
 
   /*static get list() {
     let userList = getUserListFromFile(FILE_PATH);

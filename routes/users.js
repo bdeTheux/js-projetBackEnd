@@ -80,11 +80,11 @@ router.get("/getDefeats", authorize, function (req, res, next) {
     score : User.getDefeats(req.user.username)});
 });
 
-/*router.get("/getGameScore", authorize, function (req, res, next) {
+router.get("/getGameScore", authorize, function (req, res, next) {
   console.log(req.user.username);
   res.json({
     score : User.getGameScore(req.user.username)});
-});*/
+});
 
 //va chercher le username de l'utilisateur connecté
 router.get("/:username", function (req, res, next) {
